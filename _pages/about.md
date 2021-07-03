@@ -8,7 +8,7 @@ permalink: /about/
 
 Welcome to this tiny corner of the internet that I'm calling home. My name is Chelsea. It's lovely to have you stop by. 
 
-<img src="tea.jpg" width="200">
+![]({{site.baseurl}}/images/tea.jpg)
 
 ### Who I am (bitesize version)
 
