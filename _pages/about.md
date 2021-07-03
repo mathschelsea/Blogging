@@ -1,6 +1,5 @@
 ---
 layout: page
-title: About
 permalink: /about/
 ---
 <img src="../images/me.png" width="300" align="left">
