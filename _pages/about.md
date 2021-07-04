@@ -1,6 +1,6 @@
 ---
 layout: page
-title: about
+title: About
 permalink: /about/
 ---
 <img src="../images/me.png" width="300" align="left">
@@ -11,11 +11,11 @@ A lover of all things technical, I spend my day as a Data Scientist building mac
 
 ### Blog Mission Statement - Jerry Maguire style
 
-These writings don't aim to impress. They are simply an account of one person's learning curve. The intention is to showcase an honest journey that is accessible to all. Too often topics like Data Science are shrouded in mystery, kept from the masses by large organisations and the highest levels of education. When learnings are shared, they usually alienate eager pupils with overly-complicated content. This suffocation of aspiration needs to end and a new wave of alternative learning needs to emerge. It's time to be kind and share our journey - the good and the bad. It's also time to be gracious and remember that all teachers were once pupils. Here is my account.
+These writings don't aim to impress. They are simply an account of one person's learning curve. The intention is to showcase an honest journey that is accessible to all. Too often topics like Data Science are shrouded in mystery, kept from the masses by large organisations and the highest levels of education. When learnings are shared, they usually alienate eager pupils with overly-complicated content. This suffocation of aspiration needs to end and a new wave of alternative learning needs to emerge. It's time to be kind and share our journey - the good and the bad. It's also time to be gracious and remember that all teachers were once pupils.
 
 ### MathsChelsea
 
-A
+The intention behind the 'MathChelsea' Instagram and Youtube account was to create a platform of freely accessible mathematical learning materials that rebel against the notion that maths is difficult, mundane and irrelevant. The result is a collection of worksheets and videos that teach technical topics through bursts of colour and unconventional contexts. In addition to learning materials, these socials also house illustrations that champion female figures in STEM who come from underprivileged or minority backgrounds.
 
 ### Bits and Bobs
 
