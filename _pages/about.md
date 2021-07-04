@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-<img src="../images/me.png" width="300" align="left">
+<img src="../images/me.png" width="400" align="left">
 
 ### Chelsea Tucker
 
@@ -16,6 +16,8 @@ These writings don't aim to impress. They are simply an account of one person's 
 ### MathsChelsea
 
 The intention behind the 'MathChelsea' Instagram and Youtube account was to create a platform of freely accessible mathematical learning materials that rebel against the notion that maths is difficult, mundane and irrelevant. The result is a collection of worksheets and videos that teach technical topics through bursts of colour and unconventional contexts. In addition to learning materials, these socials also house illustrations that champion female figures in STEM who come from underprivileged or minority backgrounds.
+
+<img src="../images/mathschelsea.jpg">
 
 ### Bits and Bobs
 
