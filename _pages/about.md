@@ -21,3 +21,15 @@ The intention behind the 'MathChelsea' Instagram and Youtube account was to crea
 
 ### Bits and Bobs
 
+Education: 
+- MMath Mathematics at [The University of Leeds](https://eps.leeds.ac.uk/maths)
+- Msc Exploration Geophysics at [The University of Leeds](https://courses.leeds.ac.uk/8310/exploration-geophysics-msc)
+
+STEM:
+- [Stemettes](https://stemettes.org/) 2021 [#EasterExplore](https://stemettes.org/explore/) Speaker
+- [YFYA](https://www.yfya.co.uk/) 2020 Speaker
+- Stemettes 2020 [#Outbox2020](https://stemettes.org/2020outbox/) Speaker
+- Women in Mathematics [Article](https://stemettes.org/zine/profiles/meet-chelsea-tucker/)
+- Tips for Maths Careers [Article](https://stemettes.org/zine/advice/what-are-your-top-tips-for-getting-into-a-maths-career/)
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Thursday <a href="https://twitter.com/hashtag/EasterExplore?src=hash&amp;ref_src=twsrc%5Etfw">#EasterExplore</a> IG Live! Join our Super Stemette Isabella Topley and Chelsea Tucker, Senior Data Scientist at <a href="https://twitter.com/CoveaInsplc?ref_src=twsrc%5Etfw">@CoveaInsplc</a> and <a href="https://twitter.com/Stemettes?ref_src=twsrc%5Etfw">@Stemettes</a>, learn about what they do and why they enjoy it. <br><br>⏩Go to <a href="https://t.co/Vpa6YXqNAZ">https://t.co/Vpa6YXqNAZ</a> <a href="https://twitter.com/hashtag/GirlsInSTEM?src=hash&amp;ref_src=twsrc%5Etfw">#GirlsInSTEM</a> <a href="https://twitter.com/hashtag/WomenInSTEM?src=hash&amp;ref_src=twsrc%5Etfw">#WomenInSTEM</a> <a href="https://twitter.com/hashtag/HomeLearning?src=hash&amp;ref_src=twsrc%5Etfw">#HomeLearning</a> <a href="https://t.co/H3oPUmfEG7">pic.twitter.com/H3oPUmfEG7</a></p>&mdash; Stemettes ® 💙 ★ # + (@Stemettes) <a href="https://twitter.com/Stemettes/status/1382710840852414466?ref_src=twsrc%5Etfw">April 15, 2021</a></blockquote>
