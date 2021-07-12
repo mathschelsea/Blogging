@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>AWS NVIDIA GPU Instance Setup (for UK) | mathschelsea</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="AWS NVIDIA GPU Instance Setup (for UK)" />
+<meta name="author" content="Chelsea Tucker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Creating an Amazon SageMaker notebook instance of type ml.g4dn.xlarge for Deep Learning in the EU London (eu-west-2) region." />
+<meta property="og:description" content="Creating an Amazon SageMaker notebook instance of type ml.g4dn.xlarge for Deep Learning in the EU London (eu-west-2) region." />
+<link rel="canonical" href="https://mathschelsea.github.io/Blogging/jupyter/2021/07/12/setup.html" />
+<meta property="og:url" content="https://mathschelsea.github.io/Blogging/jupyter/2021/07/12/setup.html" />
+<meta property="og:site_name" content="mathschelsea" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-07-12T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Creating an Amazon SageMaker notebook instance of type ml.g4dn.xlarge for Deep Learning in the EU London (eu-west-2) region.","url":"https://mathschelsea.github.io/Blogging/jupyter/2021/07/12/setup.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://mathschelsea.github.io/Blogging/jupyter/2021/07/12/setup.html"},"headline":"AWS NVIDIA GPU Instance Setup (for UK)","dateModified":"2021-07-12T00:00:00-05:00","datePublished":"2021-07-12T00:00:00-05:00","author":{"@type":"Person","name":"Chelsea Tucker"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Blogging/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://mathschelsea.github.io/Blogging/feed.xml" title="mathschelsea" /><link rel="shortcut icon" type="image/x-icon" href="/Blogging/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Blogging/">mathschelsea</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Blogging/about/">About</a><a class="page-link" href="/Blogging/search/">Search</a><a class="page-link" href="/Blogging/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">AWS NVIDIA GPU Instance Setup (for UK)</h1><p class="page-description">Creating an Amazon SageMaker notebook instance of type ml.g4dn.xlarge for Deep Learning in the EU London (eu-west-2) region.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-07-12T00:00:00-05:00" itemprop="datePublished">
+        Jul 12, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Chelsea Tucker</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/Blogging/categories/#jupyter">jupyter</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/mathschelsea/Blogging/tree/master/_notebooks/2021-07-12-setup.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/Blogging/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/mathschelsea/Blogging/master?filepath=_notebooks%2F2021-07-12-setup.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Blogging/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/mathschelsea/Blogging/blob/master/_notebooks/2021-07-12-setup.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Blogging/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#1.-Prelimiary-Points">1. Prelimiary Points </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#1.1-Why-do-I-need-an-NVIDIA-GPU?">1.1 Why do I need an NVIDIA GPU? </a></li>
+<li class="toc-entry toc-h2"><a href="#1.2-Why-I'm-using-AWS">1.2 Why I&#39;m using AWS </a></li>
+<li class="toc-entry toc-h2"><a href="#1.3-Alternative-Guides">1.3 Alternative Guides </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#2.-AWS-Account-&-Service-Quota-Increase">2. AWS Account &amp; Service Quota Increase </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#2.1-AWS-Account">2.1 AWS Account </a></li>
+<li class="toc-entry toc-h2"><a href="#2.2-Service-Quota-Increase">2.2 Service Quota Increase </a></li>
+<li class="toc-entry toc-h2"><a href="#2.3-Steps-for-request">2.3 Steps for request </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#3.-CloudFormation">3. CloudFormation </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#3.1-CloudFormation">3.1 CloudFormation </a></li>
+<li class="toc-entry toc-h2"><a href="#3.2-Stack-Templates">3.2 Stack Templates </a></li>
+<li class="toc-entry toc-h2"><a href="#3.3-Stack-Setup">3.3 Stack Setup </a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#4.-Sagemaker-Instance">4. Sagemaker Instance </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#4.1-Notebook-Setup">4.1 Notebook Setup </a></li>
+<li class="toc-entry toc-h2"><a href="#4.2-Important">4.2 Important </a></li>
+</ul>
+</li>
+</ul><!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-07-12-setup.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1.-Prelimiary-Points">
+<a class="anchor" href="#1.-Prelimiary-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Prelimiary Points<a class="anchor-link" href="#1.-Prelimiary-Points"> </a>
+</h1>
+<h2 id="1.1-Why-do-I-need-an-NVIDIA-GPU?">
+<a class="anchor" href="#1.1-Why-do-I-need-an-NVIDIA-GPU?" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 Why do I need an NVIDIA GPU?<a class="anchor-link" href="#1.1-Why-do-I-need-an-NVIDIA-GPU?"> </a>
+</h2>
+<p>I'm completeing the <a href="https://course.fast.ai/">Deep Learning for Coders with fastai &amp; PyTorch course</a> by Jeremy Howard and Sylvain Gugger which; by the way, is amazing and very alturistic of them (<strong>thanks both!</strong>). To actually do the course I need access to a GPU. Now, I'm in no way an expert on software engineering but through reading the course book it says that the tasks handled by a GPU are very similar to those done by a neural network. Therefore, for this course, computing over a GPU is superior to that of a CPU. In addition, not any old GPU will be supported by the main deep learning libraries therefore I need access to an NVIDIA GPU.</p>
+<h2 id="1.2-Why-I'm-using-AWS">
+<a class="anchor" href="#1.2-Why-I'm-using-AWS" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 Why I'm using AWS<a class="anchor-link" href="#1.2-Why-I'm-using-AWS"> </a>
+</h2>
+<p>I've decided to complete this course using Amazon Sagemaker notebook instances. The reason for this is because I already use AWS at work but mainly as a cloud storage platform (s3 buckets). I'd like to see what other wizardry it houses.</p>
+<h2 id="1.3-Alternative-Guides">
+<a class="anchor" href="#1.3-Alternative-Guides" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.3 Alternative Guides<a class="anchor-link" href="#1.3-Alternative-Guides"> </a>
+</h2>
+<p>There are a couple of guides on how to get set-up with <a href="https://course.fast.ai/start_sagemaker">Amazon Sagemaker</a> as well as other servers such as <a href="https://course.fast.ai/start_gradient">Paperspace Gradient</a> and <a href="https://course.fast.ai/start_colab">Google Colab</a>. However, I've found that some of the steps are different for people living in the UK so I thought I'd create this slightly alternative guide. I'm also very new to remote server usage and deep learing so I thought I'd create a more incremental guide for the absolute beginners among us (I feel your pain).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2.-AWS-Account-&amp;-Service-Quota-Increase">
+<a class="anchor" href="#2.-AWS-Account-&amp;-Service-Quota-Increase" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. AWS Account &amp; Service Quota Increase<a class="anchor-link" href="#2.-AWS-Account-&amp;-Service-Quota-Increase"> </a>
+</h1>
+<h2 id="2.1-AWS-Account">
+<a class="anchor" href="#2.1-AWS-Account" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.1 AWS Account<a class="anchor-link" href="#2.1-AWS-Account"> </a>
+</h2>
+<p>In order to use Amazon Sagemarker you need an AWS account. This is really simple to set-up, just follow Amazon's instructions in this post <a href="https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/">here</a>. Note, you'll need your credit or debit card details to hand.</p>
+<h2 id="2.2-Service-Quota-Increase">
+<a class="anchor" href="#2.2-Service-Quota-Increase" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.2 Service Quota Increase<a class="anchor-link" href="#2.2-Service-Quota-Increase"> </a>
+</h2>
+<p>When you create an AWS account you'll be assigned the default quotas (also referred to as 'limits') for a variety of services (images, instances etc.) based on your region (I'm based in the UK so my region is eu-west-2). These defaults might work for you or you may want to go up a notch with them. As I said at the start, for the Fastai course I need a specific GPU and so I need to request a 'limit increase'.</p>
+<p>Now as I've said, I'm no software engineer and I had a bit of a hard time following the quides at this point. According to the steps, I needed to request a 'ml.p2.xlarge' instance however this isn't currently available in my region. I then went in search of the next best thing and found this wonderful <a href="https://towardsdatascience.com/choosing-the-right-gpu-for-deep-learning-on-aws-d69c157d8c86">article</a> which helped me decide on requesting a 'g4dn.xlarge' instance.</p>
+<p>Note, the request can take a day or two for AWS support to process. So make sure you account for this if you're trying to stick to a schedule or deadline.</p>
+<h2 id="2.3-Steps-for-request">
+<a class="anchor" href="#2.3-Steps-for-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3 Steps for request<a class="anchor-link" href="#2.3-Steps-for-request"> </a>
+</h2>
+<ol>
+<li>On the AWS console home page find the 'Support' drop down located in the top right hand corner and select 'Support Center' from the list. </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup1.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>On the support center home page select 'Create Case'.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup2.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Then select 'Service Limit Increase'. This will populate the lower part of the page. </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup3.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>In 'Limit type' select 'SageMaker Notebook Instances'.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup4.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Select the region (I chose 'EU (London)') and the Limit (I selected 'ml.g4dn.xlarge').</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup5.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>
+<p>Add a case description (I said I was completed thing Fastai course and needed an NVIDIA GPU at an affordable price).</p>
+</li>
+<li>
+<p>Press 'Submit.</p>
+</li>
+<li>
+<p>A new case will be opened in the 'Support Center' and an AWS support will be in touch with you.</p>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="3.-CloudFormation">
+<a class="anchor" href="#3.-CloudFormation" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. CloudFormation<a class="anchor-link" href="#3.-CloudFormation"> </a>
+</h1>
+<h2 id="3.1-CloudFormation">
+<a class="anchor" href="#3.1-CloudFormation" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.1 CloudFormation<a class="anchor-link" href="#3.1-CloudFormation"> </a>
+</h2>
+<p>Once your service quota increase has been approved it's time to create a CloudFormation stack. I think of these stacks as your blueprint. It's a set of resources that you define and freeze at a point in time. It means that you can replicate a certain situation or environment again and again. Frequently when using Python or Conda packages there will be an update to one package which is incompatbile with another. This can result in a script being fine one day but failing the next day after a package update. It's really annoying. Having an environment that is frozen in time means that your code can run without fail well into the future. I'm sure the advantage of using stacks isn't limited to just this but it's what stood out to me.</p>
+<h2 id="3.2-Stack-Templates">
+<a class="anchor" href="#3.2-Stack-Templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.2 Stack Templates<a class="anchor-link" href="#3.2-Stack-Templates"> </a>
+</h2>
+<p>A series of stack templates are provided on the Fastai site however; as I've stated before, these are set-up with an instance type of 'ml.p2.xlarge' which isn't available in the EU London (eu-west-2) region. Therefore, what I did was download the YAML file and edit it so that the instance choices include 'ml.g4dn.xlarge. I then saved this new YAML file to an S3 bucket of my own and created a stack based on that.</p>
+<h2 id="3.3-Stack-Setup">
+<a class="anchor" href="#3.3-Stack-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3 Stack Setup<a class="anchor-link" href="#3.3-Stack-Setup"> </a>
+</h2>
+<ol>
+<li>
+<p>Download the Fastai EU London template using this <a href="https://fastai-cfn.s3.amazonaws.com/sagemaker-cfn-course-v4.yml">link</a>.</p>
+</li>
+<li>
+<p>Edit the default instance type to be 'ml.g4dn.xlarge' (line 4 below) and also add it as an allowed values (line 8). I did this edit in Visual Studio Code for ease and saved the edits over the original YAML file.</p>
+</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup6.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>
+<strong>Steps 3 to 6 guide you through uploading your YAML file to an S3 bucket so that your CloudFormation stack can access it as a stack template. This isn't necessary therefore if you're not interested in S3 buckets or knowing this bit then skip to step 7.</strong> Next thing to do is to upload this edited YAML file to an S3 bucket. To do this, return to your AWS management console page and in the search bar type 'S3' and select 'S3' from the drop down list.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup7.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>In order to upload the YAML file to an S3 bucket, you need to create one. Just click the 'Create Bucket' button, give your bucket a name (I called mine 'ct-fastai-coursev4') and scrole down to 'Create Bucket'. You should see your S3 bucket in the list like mine below:</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup8.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Now, click on this new bucket and upload your YAML file. You'll do this by selecting 'Upload' and doing some drag and drop action with your YAML file. Once done your file should appear in the bucket. </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup9.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>
+<p>Click on your YAML file that you've just uploaded and copy the objects URL. You'll need this when creating your CloudFoundation stack.</p>
+</li>
+<li>
+<p>Time to go back to the AWS management console page and in the search bar type 'CloudFormation' and select 'CloudFormation' from the drop down list.</p>
+</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup10.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Click the 'Create Stack' button. On the form select 'Template is ready'. If you're coming straight from step 3 then you should select your template source as 'Upload a template' and chose your edited YAML file from step 2. If you've gone through steps 3 to 6 then you can select your template source as 'Amazon S3 URL' and paste in the object URL from step 6. </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup11.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Enter a stack name (I called it FastaiSageMakerStack) , the instance type as 'ml.g4dn.xlarge' and volume size as '50' and click 'Next'. I then clicked 'Next' for the following page without changing anything and created the stack. The below page should then appear which shows the stack being created.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup12.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Wait for the stack's status to change to 'CREATE_COMPLETE' before moving on.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup13.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="4.-Sagemaker-Instance">
+<a class="anchor" href="#4.-Sagemaker-Instance" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Sagemaker Instance<a class="anchor-link" href="#4.-Sagemaker-Instance"> </a>
+</h1>
+<h2 id="4.1-Notebook-Setup">
+<a class="anchor" href="#4.1-Notebook-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.1 Notebook Setup<a class="anchor-link" href="#4.1-Notebook-Setup"> </a>
+</h2>
+<ol>
+<li>Go to the AWS Management Console page and type 'Sagemarker' in the search bar. Select 'Amazon SageMaker'.</li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup14.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>On the right hand panel select 'Notebook' and then 'Notebook Instances'. A page should appear with your notebook instances, in the list should be the notebook 'fastai-v4' that was created from our CloudFormation stack (line 196 of the YAML file).  </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup15.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>Right click on the 'Open in Jupyter' option and select 'Open in new tab'. This should open the Jupyter web interface and all of the material for the Fastai course. </li>
+</ol>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup16.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+<ol>
+<li>When you open your first notebook, you'll be asked to select a kernel. Make sure to chose the 'fastai' kernel. If that isn't an option, give it 20 minutes as your instance will need a bit of time to setup the first time it is opened. If it still doesnt appear as a kernel option then you might need to use the following YAML file that a very kind person on that forums has created (I had to do this and then repeat step 2 in the 3.3 Stack setup section):</li>
+</ol>
+<p><a href="https://forums.fast.ai/t/sagemaker-notebook-deployment-problem-no-fastai-kernel/88806/10?u=chelsea">https://forums.fast.ai/t/sagemaker-notebook-deployment-problem-no-fastai-kernel/88806/10?u=chelsea</a></p>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup17.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.2-Important">
+<a class="anchor" href="#4.2-Important" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.2 Important<a class="anchor-link" href="#4.2-Important"> </a>
+</h2>
+<div class="alert alert-block alert-danger">
+<b>Important!</b> Always stop your notebook instance when you are done.
+</div>
+<p>If you don't stop your notebook instance from running, you will continue to be charged. Always make sure to stop all of your notebook instances before you sign out of your AWS account.</p>
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup18.png" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="mathschelsea/Blogging"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/Blogging/jupyter/2021/07/12/setup.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Blogging/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Blogging/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Blogging/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Personal website for Chelsea Tucker</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/mathschelsea" title="mathschelsea"><svg class="svg-icon grey"><use xlink:href="/Blogging/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://www.instagram.com/mathschelsea" title="mathschelsea"><svg class="svg-icon grey"><use xlink:href="/Blogging/assets/minima-social-icons.svg#instagram"></use></svg></a></li><li><a rel="me" href="https://www.youtube.com/mathschelsea" title="mathschelsea"><svg class="svg-icon grey"><use xlink:href="/Blogging/assets/minima-social-icons.svg#youtube"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
