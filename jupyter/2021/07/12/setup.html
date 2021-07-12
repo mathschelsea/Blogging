@@ -122,7 +122,7 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h1"><a href="#1.-Prelimiary-Points">1. Prelimiary Points </a>
 <ul>
 <li class="toc-entry toc-h2"><a href="#1.1-Why-do-I-need-an-NVIDIA-GPU?">1.1 Why do I need an NVIDIA GPU? </a></li>
-<li class="toc-entry toc-h2"><a href="#1.2-Why-I'm-using-AWS">1.2 Why I&#39;m using AWS </a></li>
+<li class="toc-entry toc-h2"><a href="#1.2-Why-am-I-using-AWS?">1.2 Why am I using AWS? </a></li>
 <li class="toc-entry toc-h2"><a href="#1.3-Alternative-Guides">1.3 Alternative Guides </a></li>
 </ul>
 </li>
@@ -158,6 +158,13 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><figure>
+  
+    <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup.jpg" alt="" style="max-width: 800px">
+    
+    
+</figure>
+</p>
 <h1 id="1.-Prelimiary-Points">
 <a class="anchor" href="#1.-Prelimiary-Points" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Prelimiary Points<a class="anchor-link" href="#1.-Prelimiary-Points"> </a>
 </h1>
@@ -165,8 +172,8 @@ window.onload = wrap_img;
 <a class="anchor" href="#1.1-Why-do-I-need-an-NVIDIA-GPU?" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.1 Why do I need an NVIDIA GPU?<a class="anchor-link" href="#1.1-Why-do-I-need-an-NVIDIA-GPU?"> </a>
 </h2>
 <p>I'm completeing the <a href="https://course.fast.ai/">Deep Learning for Coders with fastai &amp; PyTorch course</a> by Jeremy Howard and Sylvain Gugger which; by the way, is amazing and very alturistic of them (<strong>thanks both!</strong>). To actually do the course I need access to a GPU. Now, I'm in no way an expert on software engineering but through reading the course book it says that the tasks handled by a GPU are very similar to those done by a neural network. Therefore, for this course, computing over a GPU is superior to that of a CPU. In addition, not any old GPU will be supported by the main deep learning libraries therefore I need access to an NVIDIA GPU.</p>
-<h2 id="1.2-Why-I'm-using-AWS">
-<a class="anchor" href="#1.2-Why-I'm-using-AWS" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 Why I'm using AWS<a class="anchor-link" href="#1.2-Why-I'm-using-AWS"> </a>
+<h2 id="1.2-Why-am-I-using-AWS?">
+<a class="anchor" href="#1.2-Why-am-I-using-AWS?" aria-hidden="true"><span class="octicon octicon-link"></span></a>1.2 Why am I using AWS?<a class="anchor-link" href="#1.2-Why-am-I-using-AWS?"> </a>
 </h2>
 <p>I've decided to complete this course using Amazon Sagemaker notebook instances. The reason for this is because I already use AWS at work but mainly as a cloud storage platform (s3 buckets). I'd like to see what other wizardry it houses.</p>
 <h2 id="1.3-Alternative-Guides">
@@ -196,9 +203,7 @@ window.onload = wrap_img;
 <h2 id="2.3-Steps-for-request">
 <a class="anchor" href="#2.3-Steps-for-request" aria-hidden="true"><span class="octicon octicon-link"></span></a>2.3 Steps for request<a class="anchor-link" href="#2.3-Steps-for-request"> </a>
 </h2>
-<ol>
-<li>On the AWS console home page find the 'Support' drop down located in the top right hand corner and select 'Support Center' from the list. </li>
-</ol>
+<p>1 - On the AWS console home page find the 'Support' drop down located in the top right hand corner and select 'Support Center' from the list.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup1.png" alt="" style="max-width: 800px">
@@ -206,9 +211,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>On the support center home page select 'Create Case'.</li>
-</ol>
+<p>2 - On the support center home page select 'Create Case'.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup2.png" alt="" style="max-width: 800px">
@@ -216,9 +219,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Then select 'Service Limit Increase'. This will populate the lower part of the page. </li>
-</ol>
+<p>3 - Then select 'Service Limit Increase'. This will populate the lower part of the page.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup3.png" alt="" style="max-width: 800px">
@@ -226,9 +227,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>In 'Limit type' select 'SageMaker Notebook Instances'.</li>
-</ol>
+<p>4 - In 'Limit type' select 'SageMaker Notebook Instances'.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-09-setup4.png" alt="" style="max-width: 800px">
@@ -236,9 +235,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Select the region (I chose 'EU (London)') and the Limit (I selected 'ml.g4dn.xlarge').</li>
-</ol>
+<p>5 - Select the region (I chose 'EU (London)') and the Limit (I selected 'ml.g4dn.xlarge').</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup5.png" alt="" style="max-width: 800px">
@@ -246,17 +243,9 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>
-<p>Add a case description (I said I was completed thing Fastai course and needed an NVIDIA GPU at an affordable price).</p>
-</li>
-<li>
-<p>Press 'Submit.</p>
-</li>
-<li>
-<p>A new case will be opened in the 'Support Center' and an AWS support will be in touch with you.</p>
-</li>
-</ol>
+<p>6 - Add a case description (I said I was completed thing Fastai course and needed an NVIDIA GPU at an affordable price).</p>
+<p>7 - Press 'Submit'.</p>
+<p>8 - A new case will be opened in the 'Support Center' and an AWS support will be in touch with you.</p>
 
 </div>
 </div>
@@ -278,14 +267,8 @@ window.onload = wrap_img;
 <h2 id="3.3-Stack-Setup">
 <a class="anchor" href="#3.3-Stack-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.3 Stack Setup<a class="anchor-link" href="#3.3-Stack-Setup"> </a>
 </h2>
-<ol>
-<li>
-<p>Download the Fastai EU London template using this <a href="https://fastai-cfn.s3.amazonaws.com/sagemaker-cfn-course-v4.yml">link</a>.</p>
-</li>
-<li>
-<p>Edit the default instance type to be 'ml.g4dn.xlarge' (line 4 below) and also add it as an allowed values (line 8). I did this edit in Visual Studio Code for ease and saved the edits over the original YAML file.</p>
-</li>
-</ol>
+<p>1 - Download the Fastai EU London template using this <a href="https://fastai-cfn.s3.amazonaws.com/sagemaker-cfn-course-v4.yml">link</a>.</p>
+<p>2 - Edit the default instance type to be 'ml.g4dn.xlarge' (line 4 below) and also add it as an allowed values (line 8). I did this edit in Visual Studio Code for ease and saved the edits over the original YAML file.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup6.png" alt="" style="max-width: 800px">
@@ -293,10 +276,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>
-<strong>Steps 3 to 6 guide you through uploading your YAML file to an S3 bucket so that your CloudFormation stack can access it as a stack template. This isn't necessary therefore if you're not interested in S3 buckets or knowing this bit then skip to step 7.</strong> Next thing to do is to upload this edited YAML file to an S3 bucket. To do this, return to your AWS management console page and in the search bar type 'S3' and select 'S3' from the drop down list.</li>
-</ol>
+<p>3 - <strong>Steps 3 to 6 guide you through uploading your YAML file to an S3 bucket so that your CloudFormation stack can access it as a stack template. This isn't necessary therefore if you're not interested in S3 buckets or knowing this bit then skip to step 7.</strong> Next thing to do is to upload this edited YAML file to an S3 bucket. To do this, return to your AWS management console page and in the search bar type 'S3' and select 'S3' from the drop down list.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup7.png" alt="" style="max-width: 800px">
@@ -304,9 +284,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>In order to upload the YAML file to an S3 bucket, you need to create one. Just click the 'Create Bucket' button, give your bucket a name (I called mine 'ct-fastai-coursev4') and scrole down to 'Create Bucket'. You should see your S3 bucket in the list like mine below:</li>
-</ol>
+<p>4 - In order to upload the YAML file to an S3 bucket, you need to create one. Just click the 'Create Bucket' button, give your bucket a name (I called mine 'ct-fastai-coursev4') and scrole down to 'Create Bucket'. You should see your S3 bucket in the list like mine below:</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup8.png" alt="" style="max-width: 800px">
@@ -314,9 +292,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Now, click on this new bucket and upload your YAML file. You'll do this by selecting 'Upload' and doing some drag and drop action with your YAML file. Once done your file should appear in the bucket. </li>
-</ol>
+<p>5 - Now, click on this new bucket and upload your YAML file. You'll do this by selecting 'Upload' and doing some drag and drop action with your YAML file. Once done your file should appear in the bucket.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup9.png" alt="" style="max-width: 800px">
@@ -324,14 +300,8 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>
-<p>Click on your YAML file that you've just uploaded and copy the objects URL. You'll need this when creating your CloudFoundation stack.</p>
-</li>
-<li>
-<p>Time to go back to the AWS management console page and in the search bar type 'CloudFormation' and select 'CloudFormation' from the drop down list.</p>
-</li>
-</ol>
+<p>6 - Click on your YAML file that you've just uploaded and copy the objects URL. You'll need this when creating your CloudFoundation stack.</p>
+<p>7 - Time to go back to the AWS management console page and in the search bar type 'CloudFormation' and select 'CloudFormation' from the drop down list.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup10.png" alt="" style="max-width: 800px">
@@ -339,9 +309,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Click the 'Create Stack' button. On the form select 'Template is ready'. If you're coming straight from step 3 then you should select your template source as 'Upload a template' and chose your edited YAML file from step 2. If you've gone through steps 3 to 6 then you can select your template source as 'Amazon S3 URL' and paste in the object URL from step 6. </li>
-</ol>
+<p>8 - Click the 'Create Stack' button. On the form select 'Template is ready'. If you're coming straight from step 3 then you should select your template source as 'Upload a template' and chose your edited YAML file from step 2. If you've gone through steps 3 to 6 then you can select your template source as 'Amazon S3 URL' and paste in the object URL from step 6.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup11.png" alt="" style="max-width: 800px">
@@ -349,9 +317,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Enter a stack name (I called it FastaiSageMakerStack) , the instance type as 'ml.g4dn.xlarge' and volume size as '50' and click 'Next'. I then clicked 'Next' for the following page without changing anything and created the stack. The below page should then appear which shows the stack being created.</li>
-</ol>
+<p>9 - Enter a stack name (I called it FastaiSageMakerStack) , the instance type as 'ml.g4dn.xlarge' and volume size as '50' and click 'Next'. I then clicked 'Next' for the following page without changing anything and created the stack. The below page should then appear which shows the stack being created.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup12.png" alt="" style="max-width: 800px">
@@ -359,9 +325,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Wait for the stack's status to change to 'CREATE_COMPLETE' before moving on.</li>
-</ol>
+<p>10 - Wait for the stack's status to change to 'CREATE_COMPLETE' before moving on.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup13.png" alt="" style="max-width: 800px">
@@ -382,9 +346,7 @@ window.onload = wrap_img;
 <h2 id="4.1-Notebook-Setup">
 <a class="anchor" href="#4.1-Notebook-Setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>4.1 Notebook Setup<a class="anchor-link" href="#4.1-Notebook-Setup"> </a>
 </h2>
-<ol>
-<li>Go to the AWS Management Console page and type 'Sagemarker' in the search bar. Select 'Amazon SageMaker'.</li>
-</ol>
+<p>1 - Go to the AWS Management Console page and type 'Sagemarker' in the search bar. Select 'Amazon SageMaker'.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup14.png" alt="" style="max-width: 800px">
@@ -392,9 +354,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>On the right hand panel select 'Notebook' and then 'Notebook Instances'. A page should appear with your notebook instances, in the list should be the notebook 'fastai-v4' that was created from our CloudFormation stack (line 196 of the YAML file).  </li>
-</ol>
+<p>2 - On the right hand panel select 'Notebook' and then 'Notebook Instances'. A page should appear with your notebook instances, in the list should be the notebook 'fastai-v4' that was created from our CloudFormation stack (line 196 of the YAML file).</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup15.png" alt="" style="max-width: 800px">
@@ -402,9 +362,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>Right click on the 'Open in Jupyter' option and select 'Open in new tab'. This should open the Jupyter web interface and all of the material for the Fastai course. </li>
-</ol>
+<p>3 - Right click on the 'Open in Jupyter' option and select 'Open in new tab'. This should open the Jupyter web interface and all of the material for the Fastai course.</p>
 <p><figure>
   
     <img class="docimage" src="/Blogging/images/copied_from_nb/images/2021-07-12-setup16.png" alt="" style="max-width: 800px">
@@ -412,9 +370,7 @@ window.onload = wrap_img;
     
 </figure>
 </p>
-<ol>
-<li>When you open your first notebook, you'll be asked to select a kernel. Make sure to chose the 'fastai' kernel. If that isn't an option, give it 20 minutes as your instance will need a bit of time to setup the first time it is opened. If it still doesnt appear as a kernel option then you might need to use the following YAML file that a very kind person on that forums has created (I had to do this and then repeat step 2 in the 3.3 Stack setup section):</li>
-</ol>
+<p>4 - When you open your first notebook, you'll be asked to select a kernel. Make sure to choose the 'fastai' kernel. If that isn't an option, give it 20 minutes as your instance will need a bit of time to setup the first time it is opened. If it still doesn't appear as a kernel option then you might need to use the following YAML file that a very kind person on that forums has created (I had to do this and then repeat step 2 in the 3.3 'Stack Setup' section):</p>
 <p><a href="https://forums.fast.ai/t/sagemaker-notebook-deployment-problem-no-fastai-kernel/88806/10?u=chelsea">https://forums.fast.ai/t/sagemaker-notebook-deployment-problem-no-fastai-kernel/88806/10?u=chelsea</a></p>
 <p><figure>
   
